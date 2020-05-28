@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D10B5D36-BD30-447C-8E2C-54A2D894376B"
+            uuid = "F82AA41C-9E6A-4F73-BFE7-6DB9D607274E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FreshNews/Networking/ArticlesNetworkingManager.swift"
+            filePath = "FreshNews/Networking/RequestErrorHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "fetchArticles(inPage:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "handle(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

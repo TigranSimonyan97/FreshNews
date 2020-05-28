@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class ArticlesNetworkingManager {
-    private let networkingManager = NetworkingManager()
+    private let networkingManager = ImageLoader()
 
     private let baseURLString = "https://content.guardianapis.com/search?api-key=c852c34d-5488-4340-9cfa-91811ca3c4dd&show-fields=bodyText,thumbnail,headline&show-tags=contributor&page-size=20&page="
     
@@ -19,7 +19,7 @@ class ArticlesNetworkingManager {
         let decoder = JSONDecoder()
         
         guard let url = URL(string: urlString) else {
-            return Fail(error: RequestErrorHandler.RequestError.incorrectURL(urlString))
+            return Fail(error: RequestErrorHandler.RequestError.invalidURL(urlString))
                         .eraseToAnyPublisher()
         }
         

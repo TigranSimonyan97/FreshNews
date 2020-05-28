@@ -36,7 +36,7 @@ struct ArticleDataModel : Decodable, Identifiable {
     
     struct Field : Decodable {
         var title: String
-        var thumbnailURLString: String
+        var thumbnailURLString: String?
         var body: String
         
         enum CodingKeys: String, CodingKey {

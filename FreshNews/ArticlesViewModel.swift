@@ -6,22 +6,21 @@
 //  Copyright © 2020 Scriptomania. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 class ArticlesViewModel : ObservableObject {
-    private let networkingManager = ArticlesNetworkingManager()
+    private let articleNetworkingManager = ArticlesNetworkingManager()
     private let errorHandler = RequestErrorHandler()
-    private let dataParser = ArticleDataParser()
-    
-    private var currentPageIndex = 1
     
     @Published var articles = [ArticleDataModel]()
     
     private var articlesSubscriber: AnyCancellable?
     
+    private var currentPageIndex = 1
+
     func articlesInPage() -> Void {
-        articlesSubscriber = networkingManager.fetchArticles(inPage: currentPageIndex)
+        articlesSubscriber = articleNetworkingManager.fetchArticles(inPage: currentPageIndex)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [unowned self] (completion) in
                 switch completion {
@@ -29,11 +28,11 @@ class ArticlesViewModel : ObservableObject {
                     self.errorHandler.handle(error)
                 case .finished: break
                 }
-
-                }, receiveValue: { [unowned self] fetchedArticles in
-                    self.articles = self.articles + fetchedArticles
+                }) { [unowned self] fetchedArticles in
+                
+                    self.articles = self.articles + fetchedArticles.filter { $0.fields.thumbnailURLString != nil }
                     self.currentPageIndex += 1
-            })
-    }
+                }
 
+    }
 }

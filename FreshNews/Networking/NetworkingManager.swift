@@ -1,5 +1,5 @@
 //
-//  NetworkingManager.swift
+//  ImageLoader.swift
 //  FreshNews
 //
 //  Created by Tigran Simonyan on 5/22/20.
@@ -11,25 +11,31 @@ import Combine
 
 typealias NetworkingDataTaskResult = Result<Data, RequestErrorHandler.RequestError>
 
-class NetworkingManager {
-    private let BASE_URL = "https://content.guardianapis.com/search?api-key=c852c34d-5488-4340-9cfa-91811ca3c4dd&"
+class ImageLoader {
     
-    func executeDataTask(withURLString: String) -> URLSession.DataTaskPublisher? {
-        
-        let urlString = "\(BASE_URL)\(withURLString)"
+    func downloadImage(urlString: String) -> AnyPublisher<Data, RequestErrorHandler.RequestError> {
         guard let url = URL(string: urlString) else {
-            return nil
+            return Fail(error: RequestErrorHandler.RequestError.invalidURL(urlString)).eraseToAnyPublisher()
         }
         
-        let session = URLSession(configuration: .default)
-        let request = URLRequest(url: url)
-        let dataTask = session.dataTaskPublisher(for: request)
-        return dataTask
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { response -> Data in
+                return try self.tryMapResponseToData(data: response.data, response: response.response)
+        }.mapError {RequestErrorHandler.RequestError.map($0) }
+        .eraseToAnyPublisher()
     }
 }
 
-extension NetworkingManager {
-
-    //TODO:
-    //Add Image downloading
+extension ImageLoader {
+    func tryMapResponseToData(data: Data, response: URLResponse) throws -> Data  {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw RequestErrorHandler.RequestError.emptyResponse
+        }
+        
+        guard httpResponse.statusCode == 200 else {
+            throw RequestErrorHandler.RequestError.incorrectStatusCode(httpResponse.statusCode)
+        }
+        
+        return data
+    }
 }

@@ -12,7 +12,7 @@ class RequestErrorHandler {
     
     func handle(_ error: RequestError) {
         switch error {
-        case .incorrectURL(let urlString):
+        case .invalidURL(let urlString):
             print("Computed URL string is incorrect. URL string is - \(urlString)")
         case .requestFail(let localizedDescription):
             print("There where error during data task execution. Error localizedDescription is - \(localizedDescription)")
@@ -22,17 +22,20 @@ class RequestErrorHandler {
             print("Status code is incorrect. Status code - \(statusCode)")
         case .emptyData:
             print("Data is empty")
+        case .emptyImage:
+            print("Impossible to get image from url")
         case .other(let error):
             print("Not a RequestError. Error localizedDescription is \( error.localizedDescription)")
         }
     }
     
     enum RequestError : Error {
-        case incorrectURL(String)
+        case invalidURL(String)
         case requestFail(String)
         case emptyResponse
         case incorrectStatusCode(Int)
         case emptyData
+        case emptyImage
         case other(Error)
         
         static func map(_ error: Error) -> RequestError {
