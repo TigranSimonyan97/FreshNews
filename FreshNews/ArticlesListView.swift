@@ -18,7 +18,7 @@ struct ArticlesListView: View {
                         ArticleItemView(article: article)
                     }
                     Button("More") {
-                        self.viewModel.articlesInPage()
+                        self.viewModel.fetchArticles()
                     }
                 }
                 .frame(maxWidth: .infinity,
@@ -26,6 +26,8 @@ struct ArticlesListView: View {
                         alignment: .center)
                 .navigationBarTitle("Articles")
             }
+        }.onAppear {
+            self.viewModel.fetchArticles()
         }
     }
 }

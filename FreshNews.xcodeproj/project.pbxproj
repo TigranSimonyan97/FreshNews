@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B39D4BEC24806752005634F6 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BEB24806752005634F6 /* AsyncImage.swift */; };
+		B39D4BEF24810F70005634F6 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BEE24810F70005634F6 /* ArticleView.swift */; };
 		B3B4CE1224783135000270FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1124783135000270FB /* AppDelegate.swift */; };
 		B3B4CE1424783135000270FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1324783135000270FB /* SceneDelegate.swift */; };
 		B3B4CE1724783135000270FB /* FreshNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1524783135000270FB /* FreshNews.xcdatamodeld */; };
-		B3B4CE1924783135000270FB /* ArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1824783135000270FB /* ArticlesView.swift */; };
+		B3B4CE1924783135000270FB /* ArticlesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1824783135000270FB /* ArticlesListView.swift */; };
 		B3B4CE1B24783136000270FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3B4CE1A24783136000270FB /* Assets.xcassets */; };
 		B3B4CE1E24783136000270FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3B4CE1D24783136000270FB /* Preview Assets.xcassets */; };
 		B3B4CE2124783136000270FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3B4CE1F24783136000270FB /* LaunchScreen.storyboard */; };
@@ -45,11 +46,12 @@
 
 /* Begin PBXFileReference section */
 		B39D4BEB24806752005634F6 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		B39D4BEE24810F70005634F6 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		B3B4CE0E24783135000270FB /* FreshNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B4CE1124783135000270FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3B4CE1324783135000270FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B3B4CE1624783135000270FB /* FreshNews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FreshNews.xcdatamodel; sourceTree = "<group>"; };
-		B3B4CE1824783135000270FB /* ArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
+		B3B4CE1824783135000270FB /* ArticlesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListView.swift; sourceTree = "<group>"; };
 		B3B4CE1A24783136000270FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3B4CE1D24783136000270FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3B4CE2024783136000270FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,6 +104,13 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		B39D4BF02481A1FE005634F6 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
 		B3B4CE0524783135000270FB = {
 			isa = PBXGroup;
 			children = (
@@ -125,9 +134,11 @@
 		B3B4CE1024783135000270FB /* FreshNews */ = {
 			isa = PBXGroup;
 			children = (
-				B3B4CE1824783135000270FB /* ArticlesView.swift */,
+				B3B4CE1824783135000270FB /* ArticlesListView.swift */,
 				B3B4CE4424784B8A000270FB /* ArticleDataModel.swift */,
 				B3B4CE5124786061000270FB /* ArticlesViewModel.swift */,
+				B39D4BEE24810F70005634F6 /* ArticleView.swift */,
+				B39D4BF02481A1FE005634F6 /* Caching */,
 				B3B4CE5324786299000270FB /* Networking */,
 				B3B4CE54247862A4000270FB /* Parsers */,
 				B3B4CE4624784E97000270FB /* Supporting Files */,
@@ -333,10 +344,11 @@
 				B39D4BEC24806752005634F6 /* AsyncImage.swift in Sources */,
 				B3B4CE4524784B8A000270FB /* ArticleDataModel.swift in Sources */,
 				B3B4CE4824784EB6000270FB /* ImageLoader.swift in Sources */,
-				B3B4CE1924783135000270FB /* ArticlesView.swift in Sources */,
+				B3B4CE1924783135000270FB /* ArticlesListView.swift in Sources */,
 				B3B4CE4C247854E6000270FB /* ArticleDataParser.swift in Sources */,
 				B3B4CE4E247858CB000270FB /* ArticlesNetworkingManager.swift in Sources */,
 				B3B4CE4A2478545B000270FB /* DataParser.swift in Sources */,
+				B39D4BEF24810F70005634F6 /* ArticleView.swift in Sources */,
 				B3B4CE1724783135000270FB /* FreshNews.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

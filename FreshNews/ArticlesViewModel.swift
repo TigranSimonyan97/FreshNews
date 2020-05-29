@@ -19,7 +19,7 @@ class ArticlesViewModel : ObservableObject {
     
     private var currentPageIndex = 1
 
-    func articlesInPage() -> Void {
+    func fetchArticles() -> Void {
         articlesSubscriber = articleNetworkingManager.fetchArticles(inPage: currentPageIndex)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [unowned self] (completion) in
