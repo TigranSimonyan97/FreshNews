@@ -25,6 +25,10 @@ struct ArticleDataModel : Decodable, Identifiable {
         return String(body.prefix(upTo: index))
     }
     
+    var thumbnailRelativePath: String? {
+        URL(string: fields.thumbnailURLString!)?.relativePath
+    }
+    
     enum CodingKeys : String, CodingKey {
         case id
         case type

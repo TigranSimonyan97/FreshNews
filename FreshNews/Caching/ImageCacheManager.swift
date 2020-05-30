@@ -27,12 +27,12 @@ class ImageCacheManager: ImageCacheable {
     }
      
     func cache(_ object: UIImage) {
-        guard let data = object.pngData() else {
+        let relativePath = imageRelativePath.replacingOccurrences(of: "/", with: "")
+
+        guard let data = object.pngData(), let url = urlProvider.url(for: directory, and: relativePath) else {
             print("Can`t cache image. Impossible to get png data from image")
             return
         }
-        
-        let url = urlProvider.url(from: "\(directory)/\(imageRelativePath)")
         
         do {
             try data.write(to: url, options: .atomic)

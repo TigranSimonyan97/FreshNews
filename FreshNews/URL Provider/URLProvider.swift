@@ -9,5 +9,5 @@
 import Foundation
 
 protocol URLProvider {
-    func url(from relativePath: String) -> URL
+    func url(for directory: String, and relativePath: String) -> URL?
 }

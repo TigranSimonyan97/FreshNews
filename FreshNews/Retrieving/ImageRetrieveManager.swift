@@ -1,5 +1,5 @@
 //
-//  ImageRestoreManager.swift
+//  ImageRetrieveManager.swift
 //  FreshNews
 //
 //  Created by Tigran Simonyan on 5/30/20.
@@ -26,9 +26,10 @@ class ImageRetrieveManager: ImageRetrievable {
     }
 
     func retrieveData() -> UIImage? {
-    let url = urlProvider.url(from: "\(directory)/\(imageRelativePath)")
-        guard let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else {
-            print("There is no image under path \(url.relativePath)")
+        let relativePath = imageRelativePath.replacingOccurrences(of: "/", with: "")
+        guard let url = urlProvider.url(for: directory, and: relativePath),
+            let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else {
+            print("Impossible to retrieve image")
             return nil
         }
         

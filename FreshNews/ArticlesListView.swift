@@ -37,8 +37,8 @@ struct ArticleItemView : View {
     var body: some View {
         HStack(spacing: imageAndTextsSpaceing) {
             ArticleImageView(article: article,
-                             cacher: ImageCacheManager(directory: "articles", imageRelativePath: article.fields.thumbnailURLString!),
-                             retriever: ImageRetrieveManager(directory: "articles", imageRelativePath: article.fields.thumbnailURLString!))
+                             cacher: ImageCacheManager(directory: "articles", imageRelativePath: article.thumbnailRelativePath!),
+                             retriever: ImageRetrieveManager(directory: "articles", imageRelativePath: article.thumbnailRelativePath!))
             VStack(alignment: .leading, spacing: textSpaceing) {
                 Text(article.fields.title).font(.headline)
                 Text(article.shortBody).font(.body)
