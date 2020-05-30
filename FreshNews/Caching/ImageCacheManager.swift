@@ -7,18 +7,34 @@
 //
 
 import SwiftUI
+import Combine
 
 class ImageCacheManager: CacheManager {
-    typealias DataType = UIImage
+    typealias DataType = Data
+ 
+    let urlProvider = ImageURLProvider()
     
-    func cache(_ data: UIImage, in path: String) {
-        let fileManager = FileManager()
-        
-        guard let imageData = data.pngData() else {
-            print("Impossible to get data from image")
-            return
+    func cache(_ data: Data, in relativePath: String) {
+        let url = urlProvider.url(from: relativePath) 
+    
+        do {
+            try data.write(to: url, options: .atomic)
+        } catch let error {
+            print("some error \(error.localizedDescription), url \(url)")
         }
+    }
+    
+    func clean() {
+        let fileManager = FileManager.default
+        let basePath = urlProvider.baseURL.relativePath
         
-        fileManager.createFile(atPath: path, contents: imageData, attributes: nil)
+        do {
+            let filePaths = try fileManager.contentsOfDirectory(atPath: basePath)
+            for filePath in filePaths {
+                try fileManager.removeItem(atPath: basePath + filePath)
+            }
+        } catch {
+            print("Could not clear temp folder: \(error)")
+        }
     }
 }

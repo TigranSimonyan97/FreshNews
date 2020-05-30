@@ -10,6 +10,8 @@ import Foundation
 
 protocol CacheManager {
     associatedtype DataType
+
+    func cache(_ data: DataType, in relativePath: String)
     
-    func cache(_ data: DataType, in path: String)
+    func clean()
 }

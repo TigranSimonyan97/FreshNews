@@ -13,6 +13,8 @@
 		B39D4BF42481A309005634F6 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BF32481A309005634F6 /* ImageCacheManager.swift */; };
 		B39D4BF82481A71A005634F6 /* RestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BF72481A71A005634F6 /* RestoreManager.swift */; };
 		B39D4BFA2481A758005634F6 /* ImageRestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BF92481A758005634F6 /* ImageRestoreManager.swift */; };
+		B39D4BFC2481A973005634F6 /* URLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BFB2481A973005634F6 /* URLProvider.swift */; };
+		B39D4BFE2481AF92005634F6 /* ImageURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D4BFD2481AF92005634F6 /* ImageURLProvider.swift */; };
 		B3B4CE1224783135000270FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1124783135000270FB /* AppDelegate.swift */; };
 		B3B4CE1424783135000270FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1324783135000270FB /* SceneDelegate.swift */; };
 		B3B4CE1724783135000270FB /* FreshNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3B4CE1524783135000270FB /* FreshNews.xcdatamodeld */; };
@@ -55,6 +57,8 @@
 		B39D4BF32481A309005634F6 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		B39D4BF72481A71A005634F6 /* RestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreManager.swift; sourceTree = "<group>"; };
 		B39D4BF92481A758005634F6 /* ImageRestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRestoreManager.swift; sourceTree = "<group>"; };
+		B39D4BFB2481A973005634F6 /* URLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProvider.swift; sourceTree = "<group>"; };
+		B39D4BFD2481AF92005634F6 /* ImageURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLProvider.swift; sourceTree = "<group>"; };
 		B3B4CE0E24783135000270FB /* FreshNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B4CE1124783135000270FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3B4CE1324783135000270FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 				B3B4CE4624784E97000270FB /* Supporting Files */,
 				B3B4CE1C24783136000270FB /* Preview Content */,
 				B39D4BED24806759005634F6 /* Custom Views */,
+				B39D4BFB2481A973005634F6 /* URLProvider.swift */,
+				B39D4BFD2481AF92005634F6 /* ImageURLProvider.swift */,
 			);
 			path = FreshNews;
 			sourceTree = "<group>";
@@ -357,8 +363,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B39D4BFC2481A973005634F6 /* URLProvider.swift in Sources */,
 				B3B4CE5024785E1E000270FB /* RequestErrorHandler.swift in Sources */,
 				B3B4CE1224783135000270FB /* AppDelegate.swift in Sources */,
+				B39D4BFE2481AF92005634F6 /* ImageURLProvider.swift in Sources */,
 				B39D4BF42481A309005634F6 /* ImageCacheManager.swift in Sources */,
 				B3B4CE5224786061000270FB /* ArticlesViewModel.swift in Sources */,
 				B3B4CE1424783135000270FB /* SceneDelegate.swift in Sources */,

@@ -20,7 +20,8 @@ struct ArticleDataModel : Decodable, Identifiable {
     
     var shortBody: String {
         let body = fields.body
-        let index = body.index(body.startIndex, offsetBy: 99)
+        let offset = body.count > 100 ? 99 : body.count
+        let index = body.index(body.startIndex, offsetBy: offset)
         return String(body.prefix(upTo: index))
     }
     
@@ -50,8 +51,8 @@ struct ArticleDataModel : Decodable, Identifiable {
         var id: String
         var type: String
         var webURLString: String
-        var firstName: String
-        var lastName: String
+        var firstName: String?
+        var lastName: String?
         
         enum CodingKeys: String, CodingKey {
             case id

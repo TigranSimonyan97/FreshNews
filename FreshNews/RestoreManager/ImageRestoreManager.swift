@@ -11,9 +11,13 @@ import SwiftUI
 class ImageRestoreManager: RestoreManager {
     typealias DataType = UIImage
     
-    func restoreData(from path: String) -> UIImage? {
-        guard let image = UIImage(contentsOfFile: path) else {
-            print("There is no image under path")
+    let urlProvider = ImageURLProvider()
+    
+    func restoreData(from relativePath: String) -> UIImage? {
+        let url = urlProvider.url(from: relativePath)
+        
+        guard let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else {
+            print("There is no image under path \(url.relativePath)")
             return nil
         }
         
