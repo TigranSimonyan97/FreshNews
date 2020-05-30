@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol CacheManager {
-    associatedtype DataType
+protocol Cacheable {
+    associatedtype ObjectType
 
-    func cache(_ data: DataType, in relativePath: String)
+    func cache(_ object: ObjectType)
     
     func clean()
 }

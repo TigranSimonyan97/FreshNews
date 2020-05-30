@@ -36,21 +36,9 @@ struct ArticleItemView : View {
     var article: ArticleDataModel
     var body: some View {
         HStack(spacing: imageAndTextsSpaceing) {
-            Group {
-                if article.fields.thumbnailURLString != nil {
-                    AsyncImage(urlString: article.fields.thumbnailURLString!, placeholder: PlaceholderImage())
-                        .frame(width: imageSideSize, height: imageSideSize, alignment: .center)
-                        .cornerRadius(imageCornerRadius)
-                        .padding(imagePadding)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: imageCornerRadius)
-                                .stroke(Color.blue, lineWidth: imageStrokeLineWidth)
-                        )
-                } else {
-                    PlaceholderImage()
-                }
-            }
-            
+            ArticleImageView(article: article,
+                             cacher: ImageCacheManager(directory: "articles", imageRelativePath: article.fields.thumbnailURLString!),
+                             retriever: ImageRetrieveManager(directory: "articles", imageRelativePath: article.fields.thumbnailURLString!))
             VStack(alignment: .leading, spacing: textSpaceing) {
                 Text(article.fields.title).font(.headline)
                 Text(article.shortBody).font(.body)
@@ -60,14 +48,39 @@ struct ArticleItemView : View {
         .frame(maxWidth: .infinity, alignment: .center)
         .padding([.leading, .trailing])
     }
-    
-    let imageCornerRadius: CGFloat  = 50
-    let imageSideSize: CGFloat = 100
-    let textSpaceing: CGFloat = 10
-    let imageAndTextsSpaceing: CGFloat = 20
-    let imageStrokeLineWidth: CGFloat = 3
-    let imagePadding: CGFloat = 5
 }
+
+struct ArticleImageView : View {
+    var article: ArticleDataModel
+    var cacher: ImageCacheManager
+    var retriever: ImageRetrieveManager
+    
+    var body: some View {
+        return Group {
+            if article.fields.thumbnailURLString != nil {
+                AsyncImage(urlString: article.fields.thumbnailURLString!,
+                                placeholder: PlaceholderImage(),
+                                viewModel: AsyncImageViewModel(cacher: cacher, retriever: retriever))
+                    .frame(width: imageSideSize, height: imageSideSize, alignment: .center)
+                    .cornerRadius(imageCornerRadius)
+                    .padding(imagePadding)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                            .stroke(Color.blue, lineWidth: imageStrokeLineWidth)
+                )
+            } else {
+                PlaceholderImage()
+            }
+        }
+    }
+}
+
+private let imageCornerRadius: CGFloat  = 50
+private let imageSideSize: CGFloat = 100
+private let textSpaceing: CGFloat = 10
+private let imageAndTextsSpaceing: CGFloat = 20
+private let imageStrokeLineWidth: CGFloat = 3
+private let imagePadding: CGFloat = 5
 
 struct PlaceholderImage : View {
     var body: some View {

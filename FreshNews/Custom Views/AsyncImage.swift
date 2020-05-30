@@ -8,29 +8,32 @@
 
 import SwiftUI
 
-struct AsyncImage<Placeholder: View>: View {
-    @ObservedObject var imageLoader = ImageLoader()
+struct AsyncImage<Placeholder: View, Cacher: ImageCacheable, Retriever: ImageRetrievable>: View {
+    
+    @ObservedObject var viewModel: AsyncImageViewModel<Cacher, Retriever>
     
     let urlString: String
     private let placeholder: Placeholder?
 
-    init(urlString: String, placeholder: Placeholder? = nil ) {
+    init(urlString: String, placeholder: Placeholder? = nil, viewModel: AsyncImageViewModel<Cacher, Retriever> ) {
         self.urlString = urlString
         self.placeholder = placeholder
+        self.viewModel = viewModel
     }
     
     var body: some View {
         image.onAppear {
-            self.imageLoader.load(from: self.urlString)
+            self.viewModel.prepareImageLoader()
+            self.viewModel.load(from: self.urlString)
         }.onDisappear {
-            self.imageLoader.cancel()
+            self.viewModel.cancel()
         }
     }
     
     private var image: some View {
         Group {
-            if imageLoader.image != nil {
-                Image(uiImage: imageLoader.image!).resizable()
+            if viewModel.image != nil {
+                Image(uiImage: viewModel.image!).resizable()
             } else {
                 placeholder
             }

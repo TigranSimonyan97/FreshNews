@@ -1,5 +1,5 @@
 //
-//  RestoreManager.swift
+//  RetrieveManager.swift
 //  FreshNews
 //
 //  Created by Tigran Simonyan on 5/30/20.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol RestoreManager {
+protocol Retrievable {
     associatedtype DataType
     
-    func restoreData(from path: String) -> DataType?
+    func retrieveData() -> DataType?
 }
